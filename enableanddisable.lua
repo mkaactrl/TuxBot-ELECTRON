@@ -2,7 +2,7 @@
 
 -- Configuration
 local isBotEnabled = true  -- Bot is enabled by default
-local adminUser = "the linux arch"  -- Replace with your admin account name
+local adminUser = "SCwaiter"  -- Replace with your admin account name
 
 -- Function to send a message to the chat
 local function sendMessage(message)
