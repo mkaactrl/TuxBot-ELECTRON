@@ -18,7 +18,7 @@ end
 
 -- Command to change the IDs in-game (admin only)
 local function handleAdminCommands(player, message)
-    if player.Name == "the linux arch" then  -- Replace with your admin username
+    if player.Name == "SCwaiter" then  -- Replace with your admin username
         local args = string.split(message, " ")
         if args[1] == "-Larch" then
             if args[2] == "setChannel" and args[3] then
