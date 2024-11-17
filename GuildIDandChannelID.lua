@@ -2,29 +2,54 @@ local allowedUser = "SCwaiter"  -- Replace with your admin username
 local guild_id = 1234567890           -- Default guild ID
 local channel_id = 9876543210         -- Default channel ID
 
--- Function to change the guild and channel IDs
-local function changeIDs(player, message)
-    local args = {}
-    for word in message:gmatch("%S+") do table.insert(args, word) end
+-- Function to send a message using your custom remote format
+local function sendMessageToChannel(message)
+    local messageid = "some_unique_message_id"  -- Generate or set this dynamically
+    local replymessageid = "some_reply_message_id"  -- If replying, use the original message's ID
 
-    -- Check if the command is valid
-    if args[1] == "-Larch" and args[2] == "setids" and args[3] and args[4] then
-        if player.Name == allowedUser then  -- Check if the player is the admin
-            guild_id = tonumber(args[3])  -- Set new guild ID
-            channel_id = tonumber(args[4])  -- Set new channel ID
+    local args = {
+        [1] = {
+            ["client_message_id"] = messageid,
+            ["body"] = message,
+            ["channel_id"] = channel_id,
+            ["guild_id"] = guild_id,
+            ["reply_message_id"] = replymessageid
+        }
+    }
 
-            -- Send confirmation message
-            player:SendChatMessage("Successfully updated Guild ID to " .. guild_id .. " and Channel ID to " .. channel_id)
-        else
-            player:SendChatMessage("You don't have permission to change the IDs.")
+    -- Send the message using the correct remote
+    game:GetService("ReplicatedStorage").API.v1.channels.messages.point:InvokeServer(unpack(args))
+end
+
+-- Function to handle incoming chat commands
+local function handleConversation(player, message)
+    if player.Name == allowedUser then  -- Check if the player's name matches
+        local tuxBot = game.Workspace:FindFirstChild("TuxBot")
+        if tuxBot then
+            -- Send a message using the remote if the message matches a command
+            if message == "hello" then
+                sendMessageToChannel("Hello! How can I assist you today?")
+            elseif message == "bye" then
+                sendMessageToChannel("Goodbye! See you later!")
+            end
         end
+    else
+        sendMessageToChannel("Sorry, you are not authorized to talk to me.")
     end
 end
 
--- Listen for chat messages
+-- Listen for chat commands
 game.Players.PlayerAdded:Connect(function(player)
     player.Chatted:Connect(function(message)
-        -- Check for the command to change the IDs
-        changeIDs(player, message)
+        -- Normalize message to handle different cases (e.g., "hello", "Hello", "HELLO")
+        local normalizedMessage = string.lower(message)
+
+        -- Handle known responses
+        if normalizedMessage == "hello" or normalizedMessage == "bye" then
+            handleConversation(player, normalizedMessage)
+        else
+            -- Optional: If the message isn't recognized, you could add more logic
+            sendMessageToChannel("Sorry, I didn't understand that.")
+        end
     end)
 end)
