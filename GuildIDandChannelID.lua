@@ -1,10 +1,10 @@
 local allowedUser = "SCwaiter"  -- Replace with your admin username
-local guild_id = 1234567890           -- Default guild ID
-local channel_id = 9876543210         -- Default channel ID
+local guild_id = 1732113963           -- Default guild ID
+local channel_id = 1732113974         -- Default channel ID
 
 -- Function to send a message using your custom remote format
 local function sendMessageToChannel(message)
-    local messageid = "some_unique_message_id"  -- Generate or set this dynamically
+    local messageid = "1732060115"  -- Generate or set this dynamically
     local replymessageid = "some_reply_message_id"  -- If replying, use the original message's ID
 
     local args = {
@@ -24,7 +24,7 @@ end
 -- Function to handle incoming chat commands
 local function handleConversation(player, message)
     if player.Name == allowedUser then  -- Check if the player's name matches
-        local tuxBot = game.Workspace:FindFirstChild("TuxBot")
+        local tuxBot = game.Workspace:FindFirstChild("Kavikivi")
         if tuxBot then
             -- Send a message using the remote if the message matches a command
             if message == "hello" then
