@@ -27,8 +27,8 @@ local function sendMessage(message)
         [1] = {
             ["client_message_id"] = tostring(math.random(100000, 999999)),
             ["body"] = message,
-            ["channel_id"] = currentServerId,
-            ["guild_id"] = guildid,
+            ["channel_id"] = 1732113974,
+            ["guild_id"] = 1732113963,
             ["reply_message_id"] = nil  -- No reply message
         }
     }
