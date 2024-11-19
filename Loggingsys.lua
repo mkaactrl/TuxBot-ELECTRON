@@ -2,7 +2,7 @@
 
 -- Configuration
 local adminUser = "SCwaiter"  -- Replace with your admin account name
-local guildId = 1732849687  -- Your guild ID, replace it as needed
+local guildId = 1732113963  -- Your guild ID, replace it as needed
 
 -- Function to send a message to the chat
 local function sendMessage(message)
