@@ -1,6 +1,6 @@
 -- Default IDs (replace with your actual channel and guild IDs)
-local defaultChannelId = 1733044151  -- Replace with your desired default channel ID
-local defaultGuildId = 1733044139    -- Replace with your desired default guild ID
+local defaultChannelId = 1732113974  -- Replace with your desired default channel ID
+local defaultGuildId = 1732113963    -- Replace with your desired default guild ID
 
 -- Variables to store the current active IDs
 local channel_id = defaultChannelId
